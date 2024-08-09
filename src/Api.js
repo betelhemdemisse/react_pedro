@@ -11,7 +11,7 @@ const Api = () => {
   const displayCatFact=()=>{
     Axios.get("https://catfact.ninja/fact").then((res)=>{
       setCatFact(res.data.fact);
-     })
+     });
   } 
   useEffect(()=>{
     displayCatFact();

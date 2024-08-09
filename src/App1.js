@@ -4,16 +4,21 @@ import {Home} from "./Pages/Home";
 import {Profile} from "./Pages/Profile";
 import {Contact} from "./Pages/Contact";
 import {Navbar} from "./Pages/Navbar";
-import {useState} from "react";
+import {useState,createContext} from "react";
+import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
+export const AppContext = createContext();
 const App1 = () => {
     const [username, setUsername] = useState("Betelhem");
+   const client = new QueryClient();
     return (
         <div className="App">
+            <QueryClientProvider client={client}>
+            <AppContext.Provider value={{username ,setUsername}}>
             <Router>
            <Navbar/>
                 <Routes>
-                    <Route path="/" element={<Home username={username} />} />
-                    <Route path="/profile" element={<Profile username={username}/>} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/profile" element={<Profile/>} />
                     <Route path="/contact" element={<Contact />} />
 
                     {/* <Route path="/menu/:foodtype" element={<Menu />} /> you will use this to pass variable through url  */}
@@ -22,6 +27,8 @@ const App1 = () => {
                 </Routes>
               <h3>FOOTER</h3>  
             </Router>
+            </AppContext.Provider>
+            </QueryClientProvider>
         </div>);
 }
 export default App1;

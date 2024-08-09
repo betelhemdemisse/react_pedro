@@ -1,7 +1,6 @@
 import './App.css';
 import Axios from 'axios';
 import {useState} from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 const Api2 = () => {
 
     const [excuse, setExcuse] = useState("");
